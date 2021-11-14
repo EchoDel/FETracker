@@ -48,9 +48,8 @@ class Emuhawk(Controller):
     Class for interacting with a emuhawk emulator using the modified bizhook interface
     https://gitlab.com/EchoDel/bizhook/-/tree/main
     """
-    def __init__(self, control_file: Path, frame_rate: int):
+    def __init__(self, frame_rate: int):
         super(Emuhawk).__init__()
-        self.controls = json.load(open(control_file, 'rb'))
         self.frame_rate = frame_rate
         self.frame_time = 1/self.frame_rate
 
