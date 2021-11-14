@@ -31,7 +31,8 @@ def test_starting_state(emuhawk):
     # Setup the bizhawk exe
     bizhawk = subprocess.Popen([bizhawk_folder / 'EmuHawk.exe',
                                 "--lua=build/lua_components/hook.lua",
-                                "--load-state=tests/FF4FE.bBAQCIBWyAAAAACAriwoAEAAAAAAVcABCqAsAFAAC.KPRBTZVK77.Snes9x.QuickSave1.State",
+                                "--load-state=tests/FF4FE.bBAQCIBWyAAAAACAriwoAEAAAAAAVcABCqAsAFAAC" +
+                                ".KPRBTZVK77.Snes9x.QuickSave1.State",
                                 "build/FF4FE.bBAQCIBWyAAAAACAriwoAEAAAAAAVcABCqAsAFAAC.KPRBTZVK77.smc"])
 
     time.sleep(10)
@@ -46,7 +47,8 @@ def test_second_state(emuhawk):
     # Setup the bizhawk exe
     bizhawk = subprocess.Popen([bizhawk_folder / 'EmuHawk.exe',
                                 "--lua=build/lua_components/hook.lua",
-                                "--load-state=tests/FF4FE.bBAQCIBWyAAAAACAriwoAEAAAAAAVcABCqAsAFAAC.KPRBTZVK77.Snes9x.QuickSave2.State",
+                                "--load-state=tests/FF4FE.bBAQCIBWyAAAAACAriwoAEAAAAAAVcABCqAsAFAAC" +
+                                ".KPRBTZVK77.Snes9x.QuickSave2.State",
                                 "build/FF4FE.bBAQCIBWyAAAAACAriwoAEAAAAAAVcABCqAsAFAAC.KPRBTZVK77.smc"])
 
     time.sleep(10)
