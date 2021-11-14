@@ -19,5 +19,8 @@ Branch, program, test, submit PR with successful pytest runs.
 3. Download the FE rom (http://ff4fe.com/get?id=bBAQCIBWyAAAAACAriwoAEAAAAAAVcABCqAsAFAAC.KPRBTZVK77) Note this is needed to make sure the save states work.
 4. Run `python -m pytest` from the command line
 
+# Todo
 
-
+* Add a UI to the front end
+* Add support for bsnes
+* Add objectives, characters and bosses beaten
