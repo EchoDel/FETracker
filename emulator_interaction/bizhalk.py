@@ -4,7 +4,7 @@ import json
 import time
 from pathlib import Path
 
-from bizhook import Memory, JoyPad
+from bizhook import Memory
 
 from emulator_interaction.controller import Controller
 from tracker.keyitems import TrackerLocations, KeyItems
