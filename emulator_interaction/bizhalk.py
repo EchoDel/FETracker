@@ -4,7 +4,7 @@ import json
 import time
 from pathlib import Path
 
-from bizhook import Memory
+from bizhook import Memory, JoyPad
 
 from emulator_interaction.controller import Controller
 from tracker.keyitems import TrackerLocations, KeyItems
@@ -48,8 +48,9 @@ class Emuhawk(Controller):
     Class for interacting with a emuhawk emulator using the modified bizhook interface
     https://gitlab.com/EchoDel/bizhook/-/tree/main
     """
-    def __init__(self, frame_rate: int):
+    def __init__(self, control_file: Path, frame_rate: int):
         super(Emuhawk).__init__()
+        self.controls = json.load(open(control_file, 'rb'))
         self.frame_rate = frame_rate
         self.frame_time = 1/self.frame_rate
 
@@ -58,6 +59,22 @@ class Emuhawk(Controller):
         self.wram = Memory('WRAM')
         self.vram = Memory('VRAM')
         self.current_time = time.time()
+
+    def send_command(self, key: str, frames: int):
+        """
+        Sends the snes controller input to the emulator i.e. 'Left'
+
+        :param key: input button to press
+        :type key: int
+        :param frames: Number of frames to press for, not this will not be precise but approximate
+        :type frames: int
+        """
+        while frames > 0:
+            if time.time() - self.current_time < self.frame_time:
+                time.sleep(self.frame_time - (time.time() - self.current_time))
+            self.p1_control.set(key)
+            self.current_time = time.time()
+            frames -= 1
 
     def get_metadata(self) -> dict:
         """
