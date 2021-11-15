@@ -14,14 +14,6 @@ export_lua_components('build')
 
 
 @pytest.fixture()
-def bizhawk():
-
-    yield bizhawk
-
-    bizhawk.kill()
-
-
-@pytest.fixture()
 def emuhawk():
     emuhawk = Emuhawk(Path('emulator_interaction/controls.json'), 60)
     return emuhawk
@@ -35,7 +27,7 @@ def test_starting_state(emuhawk):
                                 ".KPRBTZVK77.Snes9x.QuickSave1.State",
                                 "build/FF4FE.bBAQCIBWyAAAAACAriwoAEAAAAAAVcABCqAsAFAAC.KPRBTZVK77.smc"])
 
-    time.sleep(10)
+    time.sleep(5)
     world_state = WorldState(emuhawk)
     assert world_state.obtained_key_items == ['Twin_Harp']
     assert world_state.get_available_checks() == ['Antlion_Nest', 'Defending_Fabul', 'Mt_Ordeals', 'Baron_Inn', 'Cave_Magnes']

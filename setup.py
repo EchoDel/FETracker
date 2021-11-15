@@ -15,7 +15,7 @@ setup(
     long_description_content_type='text/markdown',
     packages=['emulator_interaction', 'tracker'],
     install_requires=['bizhook'],
-    tests_require=['pytest', 'pytest-runner', 'flake8<4', 'pytest-flake8'],
+    tests_require=['pytest', 'pytest-runner', 'flake8<4', 'pytest-flake8', 'pytest-html', 'pytest-cov'],
     license='GNU General Public License v3.0',
     platforms='any',
 )
