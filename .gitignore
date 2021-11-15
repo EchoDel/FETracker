@@ -121,3 +121,6 @@ dmypy.json
 
 # cache files
 /cache/
+
+# testing html report
+html-report/
