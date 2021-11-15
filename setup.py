@@ -18,4 +18,5 @@ setup(
     tests_require=['pytest', 'pytest-runner', 'flake8<4', 'pytest-flake8', 'pytest-html', 'pytest-cov'],
     license='GNU General Public License v3.0',
     platforms='any',
+    dependency_links=['https://gitlab.com/EchoDel/bizhook/-/jobs/1780768808/artifacts/raw/dist/bizhook-1.0.0-py3-none-any.whl']
 )
