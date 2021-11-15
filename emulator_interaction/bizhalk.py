@@ -4,7 +4,7 @@ import json
 import time
 from pathlib import Path
 
-from bizhook import Memory, JoyPad
+from bizhook import Memory
 
 from emulator_interaction.controller import Controller
 from tracker.keyitems import TrackerLocations, KeyItems
@@ -48,16 +48,16 @@ class Emuhawk(Controller):
     Class for interacting with a emuhawk emulator using the modified bizhook interface
     https://gitlab.com/EchoDel/bizhook/-/tree/main
     """
-    def __init__(self, control_file: Path, frame_rate: int):
+    def __init__(self, control_file: Path, frame_rate: int, address: str = '127.0.0.1'):
         super(Emuhawk).__init__()
         self.controls = json.load(open(control_file, 'rb'))
         self.frame_rate = frame_rate
         self.frame_time = 1/self.frame_rate
 
-        self.cartram = Memory('CARTRAM')
-        self.cartrom = Memory('CARTROM')
-        self.wram = Memory('WRAM')
-        self.vram = Memory('VRAM')
+        self.cartram = Memory('CARTRAM', address)
+        self.cartrom = Memory('CARTROM', address)
+        self.wram = Memory('WRAM', address)
+        self.vram = Memory('VRAM', address)
         self.current_time = time.time()
 
     def send_command(self, key: str, frames: int):
