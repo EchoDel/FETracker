@@ -56,6 +56,7 @@ class MainWindow(QMainWindow):
         # Setup the icons to be updated
         self.labels = {}
         self.setup_labels()
+        self.previous_checks = None
 
         # Thread:
         self.thread = QThread()
@@ -115,18 +116,20 @@ class MainWindow(QMainWindow):
             self.icons[item.name].setIcon(icon)
 
     def setup_labels(self):
-        available_checks = self.world_state.get_available_checks()
-        for i, check in enumerate(available_checks):
-            label = QLabel(check, self)
-            label.setText(check)
+        for i in range(20):
+            label = QLabel(self)
+            label.setText("")
             label.move(icon_spacing * 6, (i + 1) * 30)
-            self.labels[check] = label
+            self.labels[i] = label
+
+    def clear_labels(self):
+        for key, label in self.labels.items():
+            label.clear()
 
     def update_labels(self):
-        self.labels = {}
         available_checks = self.world_state.get_available_checks()
-        for i, check in enumerate(available_checks):
-            label = QLabel(check, self)
-            label.setText(check)
-            label.move(icon_spacing * 6, (i + 1) * 30)
-            self.labels[check] = label
+        if self.previous_checks != available_checks:
+            self.previous_checks = available_checks
+            self.clear_labels()
+            for i, check in enumerate(available_checks):
+                self.labels[i].setText(check)
