@@ -7,7 +7,7 @@ from pathlib import Path
 from bizhook import Memory
 
 from emulator_interaction.controller import Controller
-from tracker.keyitems import TrackerLocations, KeyItems, AllKeyItems
+from tracker.keyitems import TrackerLocations, KeyItems
 
 
 # http://tasvideos.org/Bizhawk/LuaFunctions/JoypadTableKeyNames.html
@@ -154,9 +154,5 @@ class Emuhawk(Controller):
             location = found_bytes[(2 * x.value):(2 * x.value + 2)]
             result[x.name] = location[1] + location[0]
             result[x.name] = int.from_bytes(result[x.name], "big")
-
-        reverse_key_items = {}
-        for location in AllKeyItems:
-            reverse_key_items[location.value] = location.name
 
         return result
