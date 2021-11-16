@@ -22,21 +22,21 @@ class KeyItems(Enum):
     https://wiki.ff4fe.com/doku.php?id=developer_integration
     """
     Package = 0x00
-    Sand_Ruby = 0x01
-    Legend_Sword = 0x02
-    Baron_Key = 0x03
-    Twin_Harp = 0x04
-    Earth_Crystal = 0x05
-    Magma_Key = 0x06
-    Tower_Key = 0x07
+    SandRuby = 0x01
+    LegendSword = 0x02
+    BaronKey = 0x03
+    TwinHarp = 0x04
+    EarthCrystal = 0x05
+    MagmaKey = 0x06
+    TowerKey = 0x07
     Hook = 0x08
-    Luca_Key = 0x09
-    Darkness_Crystal = 0x0A
-    Rat_Tail = 0x0B
+    LucaKey = 0x09
+    DarknessCrystal = 0x0A
+    RatTail = 0x0B
     Adamant = 0x0C
     Pan = 0x0D
     Spoon = 0x0E
-    Pink_Tail = 0x0F
+    PinkTail = 0x0F
     Crystal = 0x10
 
 
@@ -162,30 +162,30 @@ class CheckRequirements(Enum):
     Defending_Fabul = None
     Mt_Ordeals = None
     Baron_Inn = None
-    Baron_Castle = ['Baron_Key']
+    Baron_Castle = ['BaronKey']
     Edward_Toroia = None
-    Cave_Magnes = ['Twin_Harp']
-    Tower_of_Zot = ['Earth_Crystal']
+    Cave_Magnes = ['TwinHarp']
+    Tower_of_Zot = ['EarthCrystal']
     Lower_Babil_boss = ['underground_access']
-    Super_Cannon = ['underground_access', 'Tower_Key']
+    Super_Cannon = ['underground_access', 'TowerKey']
     Luca = ['underground_access']
-    Sealed_Cave = ['underground_access', 'Luca_Key']
+    Sealed_Cave = ['underground_access', 'LucaKey']
     Feymarch_Chest = ['underground_access']
-    Rat_Tail_Trade = ['Hook', 'Rat_Tail']
+    Rat_Tail_Trade = ['Hook', 'RatTail']
     Yangs_Wife_Yang = ['sylph_1']
     Yangs_Wife_Pan = ['Sylphs']
 
     Feymarch_Queen = ['underground_access']
     Feymarch_King = ['underground_access']
-    Odin_Throne = ['Baron_Key']
+    Odin_Throne = ['BaronKey']
     Sylphs = ['underground_access', 'Pan']
-    Cave_Bahamut = ['Darkness_Crystal']
+    Cave_Bahamut = ['DarknessCrystal']
 
-    Murasame_Altar = ['Darkness_Crystal']
-    Crystal_Sword_Altar = ['Darkness_Crystal']
-    White_SpearAltar = ['Darkness_Crystal']
-    Ribbon_Chest_1 = ['Darkness_Crystal']
-    Ribbon_Chest_2 = ['Darkness_Crystal']
-    Masamune_Altar = ['Darkness_Crystal']
+    Murasame_Altar = ['DarknessCrystal']
+    Crystal_Sword_Altar = ['DarknessCrystal']
+    White_SpearAltar = ['DarknessCrystal']
+    Ribbon_Chest_1 = ['DarknessCrystal']
+    Ribbon_Chest_2 = ['DarknessCrystal']
+    Masamune_Altar = ['DarknessCrystal']
 
     Rydia_Mom = ['mist_dragon']
