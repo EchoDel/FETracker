@@ -125,3 +125,23 @@ class WorldState:
                     self.accessible_checks.append(x.name)
 
         return self.accessible_checks
+
+    def get_key_item_locations(self) -> dict:
+        """
+        Queries the memory of the emulator to find the location each key item was found.
+
+        :return: Location where each key item was found
+        :rtype: dict
+        """
+        result = self.controller.get_found_locations(TrackerLocations.Locations, KeyItems)
+
+        reverse_key_items = {}
+        for location in AllKeyItems:
+            reverse_key_items[location.value] = location.name
+
+        found_locations = {}
+        for x in result.items():
+            if x[1] in reverse_key_items:
+                found_locations[x[0]] = reverse_key_items[x[1]]
+
+        return found_locations

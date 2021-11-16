@@ -129,3 +129,30 @@ class Emuhawk(Controller):
         found_items = get_status(self.wram, TrackerLocations.Checked.value, check_locations)
 
         return found_items
+
+    def get_found_locations(self, locations: Enum, key_items: Enum):
+        """
+        Uses the lua interface of bizhawk to query the wram of the emulator to retrieve
+        the currently checked and unchecked locations.
+        https://wiki.ff4fe.com/doku.php?id=developer_integration
+
+        :param locations: Enum of the memory locations for the key item locations
+        :type locations: Enum
+
+        :param key_items: Enum of the memory locations for the key items
+        :type key_items: Enum
+
+        :return: Status of checked key item locations
+        :rtype: dict
+        """
+        found_bytes = []
+        for location in locations.value:
+            found_bytes.append(self.cartram.read_byte(location))
+
+        result = {}
+        for x in key_items:
+            location = found_bytes[(2 * x.value):(2 * x.value + 2)]
+            result[x.name] = location[1] + location[0]
+            result[x.name] = int.from_bytes(result[x.name], "big")
+
+        return result
