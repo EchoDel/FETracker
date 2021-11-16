@@ -17,4 +17,3 @@ if __name__ == "__main__":
     w = MainWindow(world_state, icon_folder)
     w.show()
     app.exec()
-
