@@ -29,10 +29,10 @@ def test_starting_state(emuhawk):
 
     time.sleep(5)
     world_state = WorldState(emuhawk)
-    assert world_state.obtained_key_items == ['Twin_Harp']
+    assert world_state.obtained_key_items == ['TwinHarp']
     assert world_state.get_available_checks() == ['Antlion_Nest', 'Defending_Fabul', 'Mt_Ordeals', 'Baron_Inn', 'Cave_Magnes']
     assert world_state.check_locations == ['Starting_Item']
-    assert world_state.get_key_item_locations() == {'Twin_Harp': 'Starting_Item'}
+    assert world_state.get_key_item_locations() == {'TwinHarp': 'Starting_Item'}
     bizhawk.kill()
 
 
@@ -46,8 +46,8 @@ def test_second_state(emuhawk):
 
     time.sleep(10)
     world_state = WorldState(emuhawk)
-    assert world_state.obtained_key_items == ['Twin_Harp', 'Tower_Key']
+    assert world_state.obtained_key_items == ['TwinHarp', 'TowerKey']
     assert world_state.get_available_checks() == ['Defending_Fabul', 'Mt_Ordeals', 'Baron_Inn', 'Cave_Magnes']
     assert world_state.check_locations == ['Starting_Item', 'Antlion_Nest']
-    assert world_state.get_key_item_locations() == {'Twin_Harp': 'Starting_Item', 'Tower_Key': 'Antlion_Nest'}
+    assert world_state.get_key_item_locations() == {'TwinHarp': 'Starting_Item', 'TowerKey': 'Antlion_Nest'}
     bizhawk.kill()
