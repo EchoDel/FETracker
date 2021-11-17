@@ -44,7 +44,7 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
 
         self.setWindowTitle("FF4FE Tracker")
-        self.setGeometry(400, 400, 300, 260)
+        self.setGeometry(400, 400, 800, 400)
 
         # Setup the text and other decorations
         self.add_text()
