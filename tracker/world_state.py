@@ -91,7 +91,9 @@ class WorldState:
         self.obtained_key_items = [key for key, value in self.got_key_items.items() if value == 1]
         self.missing_key_items = [key for key, value in self.got_key_items.items() if value == 0]
 
-        # add in the underground access since there are two key items we can use
+        # add in the underground access since there are two key items we can us
+        if ('Hook' in self.obtained_key_items) or ('MagmaKey' in self.obtained_key_items):
+            self.underground_access = True
         if self.underground_access:
             self.obtained_key_items.append('underground_access')
         # add the mist dragon and sylph since there is no key item from it
