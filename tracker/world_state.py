@@ -109,7 +109,7 @@ class WorldState:
         :return: Internal names of the unchecked locations
         :rtype: list
         """
-        self.get_checked_locations(self.key_item_locations)
+        self.update_checked_locations()
         self.accessible_checks = []
         for x in self.key_item_locations:
             missing = False
