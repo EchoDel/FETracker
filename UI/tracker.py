@@ -1,9 +1,10 @@
 from PyQt6.QtCore import QSize, QObject, pyqtSignal, QThread
-from PyQt6.QtGui import QIcon
+from PyQt6.QtGui import QIcon, QPixmap
 
 from pathlib import Path
 from PyQt6.QtWidgets import QMainWindow, QPushButton, QLabel
 
+from UI.helpers import add_check_mark
 from UI.locations import IconLocations
 from tracker.world_state import WorldState
 from tracker.keyitems import KeyItems
@@ -113,8 +114,16 @@ class MainWindow(QMainWindow):
                 colour = 'Color'
             else:
                 colour = 'Gray'
+
             icon_path = [str(x) for x in self.icon_folder.glob(f'**/*{item.name}-{colour}*')][0]
-            icon = QIcon(icon_path)
+
+            if item.name in [x[0] for x in self.world_state.used_key_items.items() if x[1] == 1]:
+                icon_image = add_check_mark(icon_path,
+                                            Path('UI/IconSets/checkmark.png'))
+                pixmap = QPixmap.fromImage(icon_image)
+                icon = QIcon(pixmap)
+            else:
+                icon = QIcon(icon_path)
 
             self.icons[item.name].setIcon(icon)
 
