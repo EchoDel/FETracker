@@ -10,6 +10,7 @@ from tracker.keyitems import KeyItems
 
 icon_size = 64
 icon_spacing = 70
+background_colour = '#000063'
 
 
 class Worker(QObject):
@@ -45,6 +46,7 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle("FF4FE Tracker")
         self.setGeometry(400, 400, 800, 400)
+        self.setStyleSheet(f"background-color:{background_colour};")
 
         # Setup the text and other decorations
         self.add_text()
@@ -93,6 +95,7 @@ class MainWindow(QMainWindow):
             btn = QPushButton(self)
             icon = QIcon(icon_path)
             btn.setIcon(icon)
+            btn.setStyleSheet(f"background-color:{background_colour};")
             btn.setStatusTip(item.name)
             btn.setIconSize(QSize(icon_size, icon_size))
 
