@@ -50,7 +50,7 @@ class MainWindow(QMainWindow):
         self.setStyleSheet(f"background-color:{background_colour};")
 
         # Setup the text and other decorations
-        self.add_text()
+        self.add_title()
 
         # Setup the icons for the key items
         self.icons = {}
@@ -78,19 +78,16 @@ class MainWindow(QMainWindow):
         self.thread.started.connect(self.worker.do_work)
         self.thread.finished.connect(self.worker.stop)
 
-    def add_text(self):
+    def add_title(self):
         label = QLabel('Available Locations', self)
-        label.setText('Available Locations')
-        label.move(icon_spacing * 6, 0)
+        label.setText('Available Locations:')
+        label.setStyleSheet("color: white;")
+        label.setFixedSize(300, 30)
+        label.move(icon_spacing * 5, 0)
 
     def setup_icons(self):
-        self.world_state.update_key_items()
-        obtained_key_items = self.world_state.obtained_key_items
         for i, item in enumerate(KeyItems):
-            if item.name in obtained_key_items:
-                colour = 'Color'
-            else:
-                colour = 'Gray'
+            colour = 'Gray'
             icon_path = [str(x) for x in self.icon_folder.glob(f'**/*{item.name}-{colour}*')][0]
 
             btn = QPushButton(self)
@@ -101,8 +98,7 @@ class MainWindow(QMainWindow):
             btn.setIconSize(QSize(icon_size, icon_size))
 
             button_location = IconLocations[item.name].value
-            btn.setMaximumSize(icon_size, icon_size)
-            btn.setMinimumSize(icon_size, icon_size)
+            btn.setFixedSize(icon_size, icon_size)
             btn.move(button_location[1] * icon_spacing, button_location[0] * icon_spacing)
             self.icons[item.name] = btn
 
@@ -131,7 +127,9 @@ class MainWindow(QMainWindow):
         for i in range(20):
             label = QLabel(self)
             label.setText("")
-            label.move(icon_spacing * 6, (i + 1) * 30)
+            label.setStyleSheet("color: white;")
+            label.setFixedSize(500, 30)
+            label.move(icon_spacing * 5, (i + 1) * 30)
             self.labels[i] = label
 
     def clear_labels(self):
