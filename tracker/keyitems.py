@@ -189,3 +189,33 @@ class CheckRequirements(Enum):
     Masamune_Altar = ['DarknessCrystal']
 
     Rydia_Mom = ['mist_dragon']
+
+    Tower_of_Zot_Trapped_Chest = None
+    Eblan_trapped_chest_1 = None
+    Eblan_trapped_chest_2 = None
+    Eblan_trapped_chest_3 = None
+    Lower_Babil_Trapped_Chest_1 = ['underground_access']
+    Lower_Babil_Trapped_Chest_2 = ['underground_access']
+    Lower_Babil_Trapped_Chest_3 = ['underground_access']
+    Lower_Babil_Trapped_Chest_4 = ['underground_access']
+    Cave_Eblan_Trapped_Chest = ['Hook']
+    Upper_Babil_TrappedChest = ['Hook']
+    Cave_of_Summons_Trapped_chest = ['underground_access']
+    Sylph_Cave_Trapped_Chest_1 = ['underground_access']
+    Sylph_Cave_Trapped_Chest_2 = ['underground_access']
+    Sylph_Cave_Trapped_Chest_3 = ['underground_access']
+    Sylph_Cave_Trapped_Chest_4 = ['underground_access']
+    Sylph_Cave_Trapped_Chest_5 = ['underground_access']
+    Sylph_Cave_Trapped_Chest_6 = ['underground_access']
+    Sylph_Cave_Trapped_Chest_7 = ['underground_access']
+    Giant_of_Babil_Trapped_Chest = ['DarknessCrystal']
+    Lunar_Path_Trapped_Chest = ['DarknessCrystal']
+    Lunar_Core_Trapped_Chest_1 = ['DarknessCrystal']
+    Lunar_Core_Trapped_Chest_2 = ['DarknessCrystal']
+    Lunar_Core_Trapped_Chest_3 = ['DarknessCrystal']
+    Lunar_Core_Trapped_Chest_4 = ['DarknessCrystal']
+    Lunar_Core_Trapped_Chest_5 = ['DarknessCrystal']
+    Lunar_Core_Trapped_Chest_6 = ['DarknessCrystal']
+    Lunar_Core_Trapped_Chest_7 = ['DarknessCrystal']
+    Lunar_Core_Trapped_Chest_8 = ['DarknessCrystal']
+    Lunar_Core_Trapped_Chest_9 = ['DarknessCrystal']
