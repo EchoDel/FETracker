@@ -29,11 +29,15 @@ def test_starting_state(emuhawk):
 
     time.sleep(5)
     world_state = WorldState(emuhawk)
-    assert world_state.obtained_key_items == ['TwinHarp']
-    assert world_state.get_available_checks() == ['Antlion_Nest', 'Defending_Fabul', 'Mt_Ordeals', 'Baron_Inn', 'Cave_Magnes']
-    assert world_state.check_locations == ['Starting_Item']
-    assert world_state.get_key_item_locations() == {'TwinHarp': 'Starting_Item'}
+    obtained_key_items = world_state.obtained_key_items
+    available_checks = world_state.get_available_checks()
+    check_locations = world_state.check_locations
+    key_item_locations = world_state.get_key_item_locations()
     bizhawk.kill()
+    assert obtained_key_items == ['TwinHarp']
+    assert available_checks == ['Antlion_Nest', 'Defending_Fabul', 'Mt_Ordeals', 'Baron_Inn', 'Cave_Magnes']
+    assert check_locations == ['Starting_Item']
+    assert key_item_locations == {'TwinHarp': 'Starting_Item'}
 
 
 def test_second_state(emuhawk):
@@ -46,8 +50,12 @@ def test_second_state(emuhawk):
 
     time.sleep(10)
     world_state = WorldState(emuhawk)
-    assert world_state.obtained_key_items == ['TwinHarp', 'TowerKey']
-    assert world_state.get_available_checks() == ['Defending_Fabul', 'Mt_Ordeals', 'Baron_Inn', 'Cave_Magnes']
-    assert world_state.check_locations == ['Starting_Item', 'Antlion_Nest']
-    assert world_state.get_key_item_locations() == {'TwinHarp': 'Starting_Item', 'TowerKey': 'Antlion_Nest'}
+    obtained_key_items = world_state.obtained_key_items
+    available_checks = world_state.get_available_checks()
+    check_locations = world_state.check_locations
+    key_item_locations = world_state.get_key_item_locations()
     bizhawk.kill()
+    assert obtained_key_items == ['TwinHarp', 'TowerKey']
+    assert available_checks == ['Defending_Fabul', 'Mt_Ordeals', 'Baron_Inn', 'Cave_Magnes']
+    assert check_locations == ['Starting_Item', 'Antlion_Nest']
+    assert key_item_locations == {'TwinHarp': 'Starting_Item', 'TowerKey': 'Antlion_Nest'}
