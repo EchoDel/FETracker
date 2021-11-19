@@ -157,9 +157,9 @@ class MainWindow(QMainWindow):
     def update_pass(self):
         self.got_pass = not self.got_pass
         if self.got_pass:
-            icon_path = [str(x) for x in self.icon_folder.glob(f'**/*Pass-Color*')][0]
+            icon_path = 'UI/IconSets/key-items/color/FFIVFE-Icons-2Pass-Color.png'
         else:
-            icon_path = [str(x) for x in self.icon_folder.glob(f'**/*Pass-Gray*')][0]
+            icon_path = 'UI/IconSets/key-items/grayscale/FFIVFE-Icons-2Pass-Gray.png'
 
         icon = QIcon(icon_path)
         self.icons['Pass'].setIcon(icon)
