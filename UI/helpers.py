@@ -11,16 +11,11 @@ from UI.locations import IconLocations
 
 def add_check_mark(image_path: Path, check_path: Path):
     image_icon = Image.open(image_path)
-    image_icon_access = image_icon.load()
     check = Image.open(check_path)
-    check_access = check.load()
 
-    for x in range(check.size[0]):
-        for y in range(check.size[1]):
-            if check_access[x, y][3] != 0:
-                image_icon_access[x, y] = check_access[x, y]
+    final_image = Image.alpha_composite(image_icon, check)
 
-    return ImageQt(image_icon)
+    return ImageQt(final_image)
 
 
 def setup_button(btn: QToolButton, icon_path: Path, name:str, background_colour: str, icon_size: int, icon_spacing: int):
