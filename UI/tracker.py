@@ -1,11 +1,10 @@
-from PyQt6.QtCore import QSize, QObject, pyqtSignal, QThread
+from PyQt6.QtCore import QObject, pyqtSignal, QThread
 from PyQt6.QtGui import QIcon, QPixmap
 
 from pathlib import Path
-from PyQt6.QtWidgets import QMainWindow, QPushButton, QLabel, QToolButton
+from PyQt6.QtWidgets import QMainWindow, QLabel, QToolButton
 
 from UI.helpers import add_check_mark, setup_button
-from UI.locations import IconLocations
 from tracker.world_state import WorldState
 from tracker.keyitems import KeyItems
 
