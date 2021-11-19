@@ -112,11 +112,15 @@ class MainWindow(QMainWindow):
     def update_icons(self):
         self.world_state.update_key_items()
         obtained_key_items = self.world_state.obtained_key_items
+        key_item_locations = self.world_state.get_key_item_locations()
         for item in KeyItems:
             if item.name in obtained_key_items:
                 colour = 'Color'
             else:
                 colour = 'Gray'
+
+            if item.name in key_item_locations.keys():
+                self.icons[item.name].setText(key_item_locations[item.name].replace('_', ' '))
 
             icon_path = [str(x) for x in self.icon_folder.glob(f'**/*{item.name}-{colour}*')][0]
 
