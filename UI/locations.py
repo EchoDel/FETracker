@@ -23,3 +23,4 @@ class IconLocations(Enum):
     Spoon = (3, 3)
     PinkTail = (4, 1)
     Crystal = (0, 0)
+    Pass = (0, 1)

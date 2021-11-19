@@ -2,15 +2,15 @@ from PyQt6.QtCore import QSize, QObject, pyqtSignal, QThread
 from PyQt6.QtGui import QIcon, QPixmap
 
 from pathlib import Path
-from PyQt6.QtWidgets import QMainWindow, QPushButton, QLabel
+from PyQt6.QtWidgets import QMainWindow, QPushButton, QLabel, QToolButton
 
-from UI.helpers import add_check_mark
+from UI.helpers import add_check_mark, setup_button
 from UI.locations import IconLocations
 from tracker.world_state import WorldState
 from tracker.keyitems import KeyItems
 
 icon_size = 64
-icon_spacing = 70
+icon_spacing = 80
 background_colour = '#000063'
 
 
@@ -61,6 +61,9 @@ class MainWindow(QMainWindow):
         self.setup_labels()
         self.previous_checks = None
 
+        # Add a variable for pass since we don't have a bit
+        self.got_pass = False
+
         # Thread:
         self.thread = QThread()
         self.worker = Worker(self)
@@ -90,17 +93,21 @@ class MainWindow(QMainWindow):
             colour = 'Gray'
             icon_path = [str(x) for x in self.icon_folder.glob(f'**/*{item.name}-{colour}*')][0]
 
-            btn = QPushButton(self)
-            icon = QIcon(icon_path)
-            btn.setIcon(icon)
-            btn.setStyleSheet(f"background-color:{background_colour};")
-            btn.setStatusTip(item.name)
-            btn.setIconSize(QSize(icon_size, icon_size))
+            btn = QToolButton(self)
 
-            button_location = IconLocations[item.name].value
-            btn.setFixedSize(icon_size, icon_size)
-            btn.move(button_location[1] * icon_spacing, button_location[0] * icon_spacing)
+            setup_button(btn, icon_path, item.name, background_colour, icon_size, icon_spacing)
             self.icons[item.name] = btn
+
+        # setup the icon for the Pass since there is no key item tracker bit
+        colour = 'Gray'
+        icon_path = [str(x) for x in self.icon_folder.glob(f'**/*Pass-{colour}*')][0]
+
+        btn = QToolButton(self)
+
+        setup_button(btn, icon_path, 'Pass', background_colour, icon_size, icon_spacing)
+
+        btn.clicked.connect(self.update_pass)
+        self.icons['Pass'] = btn
 
     def update_icons(self):
         self.world_state.update_key_items()
@@ -143,3 +150,13 @@ class MainWindow(QMainWindow):
             self.clear_labels()
             for i, check in enumerate(available_checks):
                 self.labels[i].setText(check)
+
+    def update_pass(self):
+        self.got_pass = not self.got_pass
+        if self.got_pass:
+            icon_path = [str(x) for x in self.icon_folder.glob(f'**/*Pass-Color*')][0]
+        else:
+            icon_path = [str(x) for x in self.icon_folder.glob(f'**/*Pass-Gray*')][0]
+
+        icon = QIcon(icon_path)
+        self.icons['Pass'].setIcon(icon)
