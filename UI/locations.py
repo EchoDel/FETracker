@@ -3,8 +3,7 @@ from enum import Enum
 
 class IconLocations(Enum):
     """
-    Enum which contains the locations of the bit which stores if the item has been retrieved or used
-    https://wiki.ff4fe.com/doku.php?id=developer_integration
+    Enum which contains the location of the item within the tracker UI.
     """
     Package = (1, 2)
     SandRuby = (1, 3)

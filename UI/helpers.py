@@ -9,7 +9,19 @@ from PyQt6.QtWidgets import QToolButton
 from UI.locations import IconLocations
 
 
-def add_check_mark(image_path: Path, check_path: Path):
+def add_check_mark(image_path: str, check_path: Path) -> ImageQt:
+    """
+    Adds a check mark to the icon passed
+
+    :param image_path: path to the base icon to be adjusted
+    :type image_path: str
+
+    :param check_path: path to the checkmark icon
+    :type check_path: Path
+
+    :return: Icon with the check mark applied
+    :rtype: ImageQt
+    """
     image_icon = Image.open(image_path)
     check = Image.open(check_path)
 
@@ -18,7 +30,18 @@ def add_check_mark(image_path: Path, check_path: Path):
     return ImageQt(final_image)
 
 
-def setup_button(btn: QToolButton, icon_path: Path, name:str, background_colour: str, icon_size: int, icon_spacing: int):
+def setup_button(btn: QToolButton, icon_path: str, name: str, background_colour: str, icon_size: int, button_spacing: int):
+    """
+    Adds all the decorators to the button to setup the basic button style.
+
+    :param btn: The button to decorate
+    :param icon_path: Path to the icon .png file
+    :param name: name of the item being tracked
+    :param background_colour: the background colour of the button
+    :param icon_size: The size of the icon
+    :param button_spacing: The spacing between the buttons
+    :return: None
+    """
     icon = QIcon(icon_path)
     btn.setIcon(icon)
     btn.setStyleSheet(f"background-color:{background_colour};")
@@ -32,4 +55,4 @@ def setup_button(btn: QToolButton, icon_path: Path, name:str, background_colour:
 
     button_location = IconLocations[name].value
     btn.setFixedSize(icon_size * 1.2, icon_size * 1.2)
-    btn.move(button_location[1] * icon_spacing, button_location[0] * icon_spacing)
+    btn.move(button_location[1] * button_spacing, button_location[0] * button_spacing)
