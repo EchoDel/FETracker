@@ -8,15 +8,15 @@ Basic auto tracker for the current state of the world including;
 
 Data is also collected for the location each key item was found which will be presented in a future update.
 
+**Note:**  The pass is **not** a key item so does not have a key item bit and must be **manually** toggled.
+
 # How to use
 
 1. Install Python
 2. Clone or download repository as zip
-3. 
+3. Run `pip install -e .` to setup all the required libaries
+4. Run `python main.py /path/to/FF4FE-rom`. The rom running in bizhawk should popup and a few seconds later the tracker.
 
-# How to contribute
-
-Branch, program, test, submit PR with successful pytest runs.
 
 ## Testing
 
@@ -26,11 +26,10 @@ Branch, program, test, submit PR with successful pytest runs.
 2. Create virtual environment
 3. run `pip install -e .[tests_require]`
 4. Download the FE rom (http://ff4fe.com/get?id=bBAQCIBWyAAAAACAriwoAEAAAAAAVcABCqAsAFAAC.KPRBTZVK77) Note this is needed to make sure the save states work. 
-   * save ROM to build/
+   * Save ROM to build/
 5. Run `python -m pytest` from the command line
 
 # Todo
 
 * Add support for bsnes
-* Present the location each key item was found
-* Add objectives, characters and bosses beaten
+* Add objectives, characters and bosses beaten. Not this needs support from the FE devs since there is no documentation on tracking bits for these.
