@@ -14,6 +14,9 @@ background_colour = '#000063'
 
 
 class Worker(QObject):
+    """
+    Worker to update the icons and labels for the UI.
+    """
     finished = pyqtSignal()  # give worker class a finished signal
 
     def __init__(self, main_ui, parent=None):
@@ -25,7 +28,7 @@ class Worker(QObject):
         i = 1
         while self.continue_run:  # give the loop a stoppable condition
             self.main_ui.update_icons()
-            self.main_ui.update_labels()
+            self.main_ui.update_available_locations()
             print(i)
             QThread.sleep(10)
             i = i + 1
@@ -36,9 +39,16 @@ class Worker(QObject):
 
 
 class MainWindow(QMainWindow):
+    """
+    Main UI for the tracker
+    """
     stop_signal = pyqtSignal()
 
     def __init__(self, world_state: WorldState, icon_folder: Path):
+        """
+        :param world_state: World state objected linked to the bizhawk emulator
+        :param icon_folder: Path to the folder containing all the icons for the tracker from SchalaKitty
+        """
         self.icon_folder = icon_folder
         self.world_state = world_state
 
@@ -57,7 +67,7 @@ class MainWindow(QMainWindow):
 
         # Setup the icons to be updated
         self.labels = {}
-        self.setup_labels()
+        self.setup_available_locations()
         self.previous_checks = None
 
         # Add a variable for pass since we don't have a bit
@@ -70,6 +80,10 @@ class MainWindow(QMainWindow):
         self.thread.start()
 
     def setup_worker_thread(self):
+        """
+        Setups the worker to update the icons and available locations
+        :return: None
+        """
         self.stop_signal.connect(self.worker.stop)  # connect stop signal to worker stop method
         self.worker.moveToThread(self.thread)
 
@@ -81,6 +95,10 @@ class MainWindow(QMainWindow):
         self.thread.finished.connect(self.worker.stop)
 
     def add_title(self):
+        """
+        Adds the title to the top right for the available locations
+        :return: None
+        """
         label = QLabel('Available Locations', self)
         label.setText('Available Locations:')
         label.setStyleSheet("color: white;")
@@ -88,6 +106,11 @@ class MainWindow(QMainWindow):
         label.move(icon_spacing * 5, 0)
 
     def setup_icons(self):
+        """
+        Sets up all the basic icons in the UI for the key items.
+
+        :return: None
+        """
         for i, item in enumerate(KeyItems):
             colour = 'Gray'
             icon_path = [str(x) for x in self.icon_folder.glob(f'**/*{item.name}-{colour}*')][0]
@@ -109,6 +132,11 @@ class MainWindow(QMainWindow):
         self.icons['Pass'] = btn
 
     def update_icons(self):
+        """
+        Updates the icons based on the current key item state in the world state object
+
+        :return: None
+        """
         self.world_state.update_key_items()
         obtained_key_items = self.world_state.obtained_key_items
         key_item_locations = self.world_state.get_key_item_locations()
@@ -133,7 +161,12 @@ class MainWindow(QMainWindow):
 
             self.icons[item.name].setIcon(icon)
 
-    def setup_labels(self):
+    def setup_available_locations(self):
+        """
+        Sets up the blank lables for all the possible check locations
+
+        :return: None
+        """
         for i in range(20):
             label = QLabel(self)
             label.setText("")
@@ -142,19 +175,34 @@ class MainWindow(QMainWindow):
             label.move(icon_spacing * 5, (i + 1) * 30)
             self.labels[i] = label
 
-    def clear_labels(self):
+    def clear_available_locations(self):
+        """
+        Clears the text on all the labels so they can be updated
+
+        :return: None
+        """
         for key, label in self.labels.items():
             label.clear()
 
-    def update_labels(self):
+    def update_available_locations(self):
+        """
+        Updates the possible key item locations which have not been checked
+
+        :return: None
+        """
         available_checks = self.world_state.get_available_checks()
         if self.previous_checks != available_checks:
             self.previous_checks = available_checks
-            self.clear_labels()
+            self.clear_available_locations()
             for i, check in enumerate(available_checks):
                 self.labels[i].setText(check)
 
     def update_pass(self):
+        """
+        Updates the icon for the pass since there is no key item bit
+
+        :return: None
+        """
         self.got_pass = not self.got_pass
         if self.got_pass:
             icon_path = 'UI/IconSets/key-items/color/FFIVFE-Icons-2Pass-Color.png'
